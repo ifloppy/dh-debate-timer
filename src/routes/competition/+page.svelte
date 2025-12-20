@@ -131,6 +131,9 @@
             <p style="font-size: 28px">
                 {config.affirmativeName} VS {config.negativeName}
             </p>
+            <p style="font-size: 20px"><br>
+                主办方: {config.organizer}
+            </p>
         </div>
 
         <Toolbar>
@@ -207,7 +210,6 @@
 <audio src="/ringtones/0s.mp3" bind:this={ringtone0s} preload="auto"></audio>
 
 <style>
-
     .line {
         display: grid;
         grid-template-columns: 1fr auto;
