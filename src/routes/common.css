@@ -1,0 +1,10 @@
+.center {
+    flex: 1;
+    /* 占满剩余空间，把 bottom 挤到最底 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 水平居中 */
+    justify-content: center;
+    /* 垂直居中（仅对这组内容） */
+}

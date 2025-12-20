@@ -1,0 +1,55 @@
+{
+    "name": "东海标准辩论赛",
+    "organizer": "东海职业技术学院 辩论社团",
+    "affirmative": "正方",
+    "negative": "反方",
+    "affirmativeName": "正方队伍",
+    "negativeName": "反方队伍",
+    "procedure": [
+        {
+            "name": "正方一辩陈词",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "反方一辩陈词",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "正方一辩质询",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "反方一辩质询",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "正方三辩小结",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "反方三辩小结",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "自由辩论",
+            "duration": 300,
+            "type": 1
+        },
+        {
+            "name": "反方四辩总结",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "正方四辩总结",
+            "duration": 180,
+            "type": 0
+        }
+    ]
+}
