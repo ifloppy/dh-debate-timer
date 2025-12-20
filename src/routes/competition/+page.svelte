@@ -203,8 +203,8 @@
         <h1>发生异常，请刷新页面</h1>
     {/if}
 </Background>
-<audio src="/ringtones/30s.mp3" bind:this={ringtone30s}></audio>
-<audio src="/ringtones/0s.mp3" bind:this={ringtone0s}></audio>
+<audio src="/ringtones/30s.mp3" bind:this={ringtone30s} preload="auto"></audio>
+<audio src="/ringtones/0s.mp3" bind:this={ringtone0s} preload="auto"></audio>
 
 <style>
 
