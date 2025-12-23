@@ -137,8 +137,8 @@
         </div>
 
         <Toolbar>
-            <Button variant="secondary" onclick={() => goto("/")}>返回</Button>
-            <Button onclick={firstProcedure}>开始</Button>
+            <Button variant="secondary" onclick={() => goto("/")} size="lg">返回</Button>
+            <Button onclick={firstProcedure} size="lg">开始</Button>
         </Toolbar>
     {:else if mode == 1}
         <div class="center">
@@ -151,10 +151,10 @@
             </h3>
         </div>
         <Toolbar>
-            <Button variant="secondary" onclick={toggleCounting}
+            <Button variant="secondary" onclick={toggleCounting} size="lg"
                 >{counting ? "暂停" : "开始"}</Button
             >
-            <Button onclick={nextProcedure}>结束</Button>
+            <Button onclick={nextProcedure} size="lg">结束</Button>
         </Toolbar>
     {:else if mode == 2}
         <div class="center">
@@ -189,13 +189,13 @@
             </h3>
         </div>
         <Toolbar>
-            <Button variant="secondary" onclick={toggleCounting}
+            <Button variant="secondary" onclick={toggleCounting} size="lg"
                 >{counting ? "暂停" : "开始"}</Button
             >
-            <Button onclick={() => (speakingSide = speakingSide == 1 ? 2 : 1)}
+            <Button onclick={() => (speakingSide = speakingSide == 1 ? 2 : 1)} size="lg"
                 >换边</Button
             >
-            <Button variant="secondary" onclick={nextProcedure}>结束</Button>
+            <Button variant="secondary" onclick={nextProcedure} size="lg">结束</Button>
         </Toolbar>
     {:else if mode == 3}
         <div class="space-y-2">
