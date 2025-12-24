@@ -158,6 +158,8 @@
 
         <Toolbar>
             <Button variant="secondary" onclick={() => goto("/")} size="lg">返回</Button>
+            <Button variant="secondary" onclick={()=>{ringtone30s.play()}} size="lg">试音30s</Button>
+            <Button variant="secondary" onclick={()=>{ringtone0s.play()}} size="lg">试音0s</Button>
             <Button onclick={firstProcedure} size="lg">开始</Button>
         </Toolbar>
     {:else if mode == 1}
