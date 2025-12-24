@@ -3,10 +3,12 @@
     import defaultSettings from "$lib/assets/default.json?raw";
     import Background from "$lib/components/competition/background.svelte";
     import Toolbar from "$lib/components/competition/toolbar.svelte";
+    import { Description } from "$lib/components/ui/alert";
     import Button from "$lib/components/ui/button/button.svelte";
     import { Skeleton } from "$lib/components/ui/skeleton";
     import type { DebateModelNormalized } from "$lib/model/config";
     import { onDestroy } from "svelte";
+    import { toast } from "svelte-sonner";
 
     // Ringtones
     let ringtone0s: HTMLAudioElement;
@@ -116,9 +118,27 @@
         }
         firstProcedure();
     }
+    function previousProcedure() {
+        stopCounting();
+        currentProcedureId--;
+        firstProcedure();
+    }
     onDestroy(() => {
         clearInterval(timerIntervalId);
     });
+    function nextProcedureWrapped() {
+        if((timer1 > 0) || (timer2 > 0)){
+            toast("时间未用完", {
+                description: "当前环节时间还没用完，你确定要进入下一环节吗？",
+                action: {
+                    label: "确定",
+                    onClick: nextProcedure
+                }
+            })
+        } else {
+            nextProcedure();
+        }
+    }
 </script>
 
 <Background>
@@ -154,7 +174,7 @@
             <Button variant="secondary" onclick={toggleCounting} size="lg"
                 >{counting ? "暂停" : "开始"}</Button
             >
-            <Button onclick={nextProcedure} size="lg">结束</Button>
+            <Button onclick={nextProcedureWrapped} size="lg">结束</Button>
         </Toolbar>
     {:else if mode == 2}
         <div class="center">
@@ -195,7 +215,7 @@
             <Button onclick={() => (speakingSide = speakingSide == 1 ? 2 : 1)} size="lg"
                 >换边</Button
             >
-            <Button variant="secondary" onclick={nextProcedure} size="lg">结束</Button>
+            <Button variant="secondary" onclick={nextProcedureWrapped} size="lg">结束</Button>
         </Toolbar>
     {:else if mode == 3}
         <div class="space-y-2">
