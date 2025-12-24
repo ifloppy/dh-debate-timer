@@ -13,11 +13,31 @@
     if (rawJson == null) {
         rawJson = defaultSettings;
         localStorage.setItem("settings", defaultSettings);
+    } else{
+        let localConfig: DebateModelNormalized = JSON.parse(rawJson);
+        let localProcedure = JSON.stringify(localConfig.procedure);
+
+        let remoteConfig: DebateModelNormalized = JSON.parse(defaultSettings);
+        let remoteProcedure = JSON.stringify(remoteConfig.procedure);
+        if(localProcedure != remoteProcedure){
+            toast("不同的配置文件", {
+                description: "本地比赛流程与预设的不同，是否需要加载预设比赛流程",
+                action: {
+                    label: "加载",
+                    onClick: () => {
+                        localConfig.procedure = remoteConfig.procedure;
+                        localStorage.setItem("settings", JSON.stringify(localConfig));
+                    }
+                }
+            })
+        }
     }
 
     import { onMount } from "svelte";
     import { writable } from "svelte/store";
     import Toolbar from "$lib/components/competition/toolbar.svelte";
+    import type { DebateModelNormalized } from "$lib/model/config";
+    import { toast } from "svelte-sonner";
 
     const isFullscreen = writable(false);
 
