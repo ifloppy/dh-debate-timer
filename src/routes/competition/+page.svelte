@@ -13,6 +13,16 @@
     // Ringtones
     let ringtone0s: HTMLAudioElement;
     let ringtone30s: HTMLAudioElement;
+    let ringtonePress: HTMLAudioElement;
+
+    // Function to play sound effect from the beginning, interrupting any previous playback
+    function playSoundEffect(audioElement: HTMLAudioElement) {
+        if (audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+            audioElement.play().catch(e => console.log("Audio play error:", e));
+        }
+    }
 
     // svelte-ignore non_reactive_update
     let config: DebateModelNormalized;
@@ -48,9 +58,9 @@
                 if (timer1 > 0) {
                     timer1--;
                     if (timer1 == 30) {
-                        ringtone30s.play();
+                        playSoundEffect(ringtone30s);
                     } else if (timer1 == 0) {
-                        ringtone0s.play();
+                        playSoundEffect(ringtone0s);
                     }
                 }
             } else if (mode == 2) {
@@ -60,9 +70,9 @@
                     if (timer1 > 0) {
                         timer1--;
                         if (timer1 == 30) {
-                            ringtone30s.play();
+                            playSoundEffect(ringtone30s);
                         } else if (timer1 == 0) {
-                            ringtone0s.play();
+                            playSoundEffect(ringtone0s);
                         }
                     }
                 } else if (speakingSide == 2) {
@@ -70,9 +80,9 @@
                     if (timer2 > 0) {
                         timer2--;
                         if (timer2 == 30) {
-                            ringtone30s.play();
+                            playSoundEffect(ringtone30s);
                         } else if (timer2 == 0) {
-                            ringtone0s.play();
+                            playSoundEffect(ringtone0s);
                         }
                     }
                 }
@@ -139,7 +149,32 @@
             nextProcedure();
         }
     }
+
+
+    function keyDownHandler(event: KeyboardEvent & { currentTarget: EventTarget & Window; }) {
+        switch(event.code) {
+            case "KeyP":
+                // pause/resume
+                toggleCounting();
+                playSoundEffect(ringtonePress);
+            break;
+            case "KeyS":
+                // switch speaker
+                if(mode != 2){
+                    break;
+                }
+                speakingSide = speakingSide == 1 ? 2 : 1
+                playSoundEffect(ringtonePress);
+            break;
+            case "ArrowRight":
+                // next procedure
+                nextProcedureWrapped();
+                playSoundEffect(ringtonePress);
+        }
+    }
 </script>
+
+<svelte:window on:keydown|preventDefault={keyDownHandler}></svelte:window>
 
 <Background>
     {#if mode == 0}
@@ -158,8 +193,8 @@
 
         <Toolbar>
             <Button variant="secondary" onclick={() => goto("/")} size="lg">返回</Button>
-            <Button variant="secondary" onclick={()=>{ringtone30s.play()}} size="lg">试音30s</Button>
-            <Button variant="secondary" onclick={()=>{ringtone0s.play()}} size="lg">试音0s</Button>
+            <Button variant="secondary" onclick={()=>{playSoundEffect(ringtone30s)}} size="lg">试音30s</Button>
+            <Button variant="secondary" onclick={()=>{playSoundEffect(ringtone0s)}} size="lg">试音0s</Button>
             <Button onclick={firstProcedure} size="lg">开始</Button>
         </Toolbar>
     {:else if mode == 1}
@@ -230,6 +265,7 @@
 </Background>
 <audio src="/ringtones/30s.mp3" bind:this={ringtone30s} preload="auto"></audio>
 <audio src="/ringtones/0s.mp3" bind:this={ringtone0s} preload="auto"></audio>
+<audio src="/ringtones/press.mp3" bind:this={ringtonePress} preload="auto"></audio>
 
 <style>
     .line {
