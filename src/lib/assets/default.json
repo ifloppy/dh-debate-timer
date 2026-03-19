@@ -7,27 +7,42 @@
     "negativeName": "反方队伍",
     "procedure": [
         {
-            "name": "正方一辩陈词",
+            "name": "正方一辩陈词（申论）",
             "duration": 180,
             "type": 0
         },
         {
-            "name": "反方一辩陈词",
+            "name": "反方四辩质询正方一辩",
             "duration": 180,
             "type": 0
         },
         {
-            "name": "正方二辩质询",
+            "name": "反方一辩陈词（申论）",
             "duration": 180,
             "type": 0
         },
         {
-            "name": "反方二辩质询",
+            "name": "正方四辩质询反方一辩",
             "duration": 180,
             "type": 0
         },
         {
-            "name": "正方三辩小结",
+            "name": "正方二辩陈词（驳论）",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "反方三辩质询正方二辩",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "反方二辩陈词（驳论）",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "正方三辩质询反方二辩",
             "duration": 180,
             "type": 0
         },
@@ -37,8 +52,13 @@
             "type": 0
         },
         {
-            "name": "自由辩论",
-            "duration": 300,
+            "name": "正方三辩小结",
+            "duration": 180,
+            "type": 0
+        },
+        {
+            "name": "自由辩论（正方先发言，每方4分钟）",
+            "duration": 480,
             "type": 1
         },
         {
